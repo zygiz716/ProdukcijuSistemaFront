@@ -1,0 +1,20 @@
+<h1>Sveiki atykę į produkcijų vykdymo sistema</h1>
+<h2>Gamybos planų sąrašas</h2>
+
+<mat-form-field>
+  <mat-label>Produkcijos</mat-label>
+  <mat-select multiple [(ngModel)]="pasirinktosProdukcijos" disableOptionCentering>
+    <mat-option (onSelectionChange)="printProd()" *ngFor="let produkcija of produkcijos" [value]="produkcija">{{produkcija.pavadinimas}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-list>
+  <mat-list-item> Pepper </mat-list-item>
+  <mat-list-item> Salt </mat-list-item>
+  <mat-list-item> Paprika </mat-list-item>
+</mat-list>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

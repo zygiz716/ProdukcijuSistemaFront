@@ -1,0 +1,46 @@
+<h1 class="header1">Produkcijų sąrašas</h1>
+<div class="example-button-row button-margin">
+  <button routerLink="/produkcijos/kurti-nauja" mat-raised-button class="button">Kurti naują</button>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 row">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="pavadinimas">
+    <th mat-header-cell *matHeaderCellDef> Pavadinimas </th>
+    <td mat-cell *matCellDef="let element"> {{element.pavadinimas}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="ivestis">
+    <th mat-header-cell *matHeaderCellDef> Įvestis </th>
+    <td mat-cell *matCellDef="let element"> {{element.ivestis}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="isvestis">
+    <th mat-header-cell *matHeaderCellDef> Išvestis </th>
+    <td mat-cell *matCellDef="let element"> {{element.isvestis}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="trinti">
+    <th mat-header-cell *matHeaderCellDef> Trinti </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="trinti(element.id)">
+        <mat-icon class="mat-18">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="stulpeliai"></tr>
+  <tr mat-row *matRowDef="let row; columns: stulpeliai;"></tr>
+</table>

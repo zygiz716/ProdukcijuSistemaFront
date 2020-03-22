@@ -1,0 +1,37 @@
+<p>produkciju-grandines works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 row">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="pavadinimas">
+    <th mat-header-cell *matHeaderCellDef> Pavadinimas </th>
+    <td mat-cell *matCellDef="let element"> {{element.pavadinimas}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="produkcijos">
+    <th mat-header-cell *matHeaderCellDef> <div class="produkciju-margin">Pasirinktos produkcijos</div></th>
+    <td mat-cell *matCellDef="let element">
+      <mat-expansion-panel class="no-box-shadow">
+        <mat-expansion-panel-header class="mat-elevation-z0">
+          <mat-panel-title>
+            Produkcijos
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <p>This is the primary content of the panel.</p>
+
+      </mat-expansion-panel>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="stulpeliai"></tr>
+  <tr mat-row *matRowDef="let row; columns: stulpeliai;"></tr>
+</table>

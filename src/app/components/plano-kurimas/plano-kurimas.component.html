@@ -1,0 +1,20 @@
+<h1 class="header1">Naujos produkcijos kūrimas</h1>
+
+<div>
+  <mat-form-field appearance="outline">
+    <input name="pavadinimas" [(ngModel)]="grandine.pavadinimas" matInput placeholder="Įveskite pavadinimą" [formControl]="pavadinimas">
+    <mat-label>Pavadinimas</mat-label>
+  </mat-form-field>
+</div>
+
+<mat-form-field>
+  <mat-label>Produkcijos</mat-label>
+  <mat-select multiple [(ngModel)]="grandine.produkcijos" disableOptionCentering>
+    <mat-option *ngFor="let produkcija of produkcijos" [value]="produkcija">{{produkcija.pavadinimas}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="example-button-row button-margin">
+  <button (click)="issaugoti()" mat-raised-button class="button">Kurti naują</button>
+  <button routerLink="/produkcijos" mat-raised-button class="button-red">Atšaukti</button>
+</div>
