@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {Pagrindinis} from "./components/pagrindinis/pagrindinis";
-import {PlanoKurimasComponent} from "./components/plano-kurimas/plano-kurimas.component";
+import {KurtiGrandineComponent} from "./components/kurti-grandine/kurti-grandine.component";
 import {ProdukcijosComponent} from "./components/produkcijos/produkcijos.component";
 import {ProdukcijuGrandinesComponent} from "./components/produkciju-grandines/produkciju-grandines.component";
 import {KurtiProdukcijaComponent} from "./components/kurti-produkcija/kurti-produkcija.component";
+import {GrandinesVykdymasComponent} from "./components/grandines-vykdymas/grandines-vykdymas.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/pagrindinis', pathMatch: 'full' },
   { path: 'pagrindinis', component: Pagrindinis },
   { path: 'produkcijos', component: ProdukcijosComponent },
   { path: 'produkcijos/kurti-nauja', component: KurtiProdukcijaComponent },
-  { path: 'gamybos-grandines', component: ProdukcijuGrandinesComponent },
-  { path: 'gamybos-grandines/kurti-nauja', component: PlanoKurimasComponent },
+  { path: 'produkciju-grandines', component: ProdukcijuGrandinesComponent },
+  { path: 'produkciju-grandines/kurti-nauja', component: KurtiGrandineComponent },
+  { path: 'grandines-vykdymas/:id', component: GrandinesVykdymasComponent },
+  { path: '**', redirectTo: '/pagrindinis', pathMatch: 'full' },
 ];
 
 @NgModule({

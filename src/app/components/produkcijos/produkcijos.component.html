@@ -36,7 +36,16 @@
     <th mat-header-cell *matHeaderCellDef> Trinti </th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button color="warn" (click)="trinti(element.id)">
-        <mat-icon class="mat-18">delete</mat-icon>
+        <mat-icon class="mat-18">trinti</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="vykdyti">
+    <th mat-header-cell *matHeaderCellDef> Vykdyti </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="trinti(element.id)">
+        <mat-icon class="mat-18">vykdyti</mat-icon>
       </button>
     </td>
   </ng-container>

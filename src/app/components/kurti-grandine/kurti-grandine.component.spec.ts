@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlanoKurimasComponent } from './plano-kurimas.component';
+import { KurtiGrandineComponent } from './kurti-grandine.component';
 
 describe('PlanoKurimasComponent', () => {
-  let component: PlanoKurimasComponent;
-  let fixture: ComponentFixture<PlanoKurimasComponent>;
+  let component: KurtiGrandineComponent;
+  let fixture: ComponentFixture<KurtiGrandineComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlanoKurimasComponent ]
+      declarations: [ KurtiGrandineComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlanoKurimasComponent);
+    fixture = TestBed.createComponent(KurtiGrandineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

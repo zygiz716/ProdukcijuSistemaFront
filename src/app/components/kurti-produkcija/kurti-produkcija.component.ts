@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {Produkcija} from "../../model/produkcija";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {ProdukcijaService} from "../../services/produkcija.service";
 
 @Component({
@@ -17,7 +17,8 @@ export class KurtiProdukcijaComponent implements OnInit {
   isvestis = new FormControl('', [Validators.required]);
   pavadinimas = new FormControl();
 
-  constructor(private produkcijaService:ProdukcijaService) { }
+  constructor(private produkcijaService:ProdukcijaService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +33,6 @@ export class KurtiProdukcijaComponent implements OnInit {
 
   issaugoti() {
     this.produkcijaService.issaugotiProdukcija(this.produkcija);
-    console.log(this.produkcija);
   }
 
 }

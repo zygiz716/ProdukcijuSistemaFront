@@ -10,10 +10,11 @@ import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {DemoMaterialModule} from "./material-module";
 import {Pagrindinis} from "./components/pagrindinis/pagrindinis";
-import { PlanoKurimasComponent } from './components/plano-kurimas/plano-kurimas.component';
+import { KurtiGrandineComponent } from './components/kurti-grandine/kurti-grandine.component';
 import { ProdukcijosComponent } from './components/produkcijos/produkcijos.component';
 import { ProdukcijuGrandinesComponent } from './components/produkciju-grandines/produkciju-grandines.component';
 import { KurtiProdukcijaComponent } from './components/kurti-produkcija/kurti-produkcija.component';
+import { GrandinesVykdymasComponent } from './components/grandines-vykdymas/grandines-vykdymas.component';
 
 @NgModule({
   imports: [
@@ -33,10 +34,11 @@ import { KurtiProdukcijaComponent } from './components/kurti-produkcija/kurti-pr
   declarations: [
     AppComponent,
     Pagrindinis,
-    PlanoKurimasComponent,
+    KurtiGrandineComponent,
     ProdukcijosComponent,
     ProdukcijuGrandinesComponent,
-    KurtiProdukcijaComponent
+    KurtiProdukcijaComponent,
+    GrandinesVykdymasComponent
   ],
   entryComponents: [AppComponent],
   bootstrap: [ AppComponent ],

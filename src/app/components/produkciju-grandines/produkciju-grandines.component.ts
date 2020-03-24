@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Produkcija} from "../../model/produkcija";
 import {ProdukcijuGrandine} from "../../model/produkciju-grandine";
+import {ProdukcijuGrandineService} from "../../services/produkciju-grandine.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-produkciju-grandines',
@@ -17,36 +19,26 @@ import {ProdukcijuGrandine} from "../../model/produkciju-grandine";
 })
 export class ProdukcijuGrandinesComponent implements OnInit {
 
-  constructor() { }
+  grandines: ProdukcijuGrandine [] = [];
+
+  constructor(private grandineService: ProdukcijuGrandineService,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.grandineService.getGrandines().subscribe(
+      list =>{
+        this.grandines = list;
+        console.log(this.grandines)
+        this.dataSource = this.grandines;
+      }
+    )
   }
-  stulpeliai: string[] = ['id', 'pavadinimas', 'produkcijos'];
-  dataSource = ELEMENT_DATA;
+  stulpeliai: string[] = ['vykdyti','id', 'pavadinimas', 'produkcijos'];
+  dataSource = this.grandines;
 
+  vykdyti(id: number) {
+    //this.produkcijaService.trintiProdukcija(id);
+    this.router.navigate(['/grandines-vykdymas/' + id]);
+  }
 }
-
-const ELEMENT_DATA: ProdukcijuGrandine[] = [
-  {
-    id: 1,
-    pavadinimas: 'Produkciju grandine 1',
-    produkcijos: [
-      {id: 1, pavadinimas: 'Iš A į B', ivestis: 'A', isvestis: 'B'},
-      {id: 2, pavadinimas: 'Iš B į C', ivestis: 'B', isvestis: 'C'},
-      {id: 3, pavadinimas: 'Iš C į D', ivestis: 'C', isvestis: 'D'}]
-  },
-  {
-    id: 2,
-    pavadinimas: 'Produkciju grandine 2',
-    produkcijos: [
-      {id: 2, pavadinimas: 'Iš B į C', ivestis: 'B', isvestis: 'C'},
-      {id: 3, pavadinimas: 'Iš C į D', ivestis: 'C', isvestis: 'D'}]
-  },
-  {
-    id: 3,
-    pavadinimas: 'Produkciju grandine 3',
-    produkcijos: [
-      {id: 1, pavadinimas: 'Iš A į B', ivestis: 'A', isvestis: 'B'},
-      {id: 2, pavadinimas: 'Iš B į C', ivestis: 'B', isvestis: 'C'}]
-  }
-];

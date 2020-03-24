@@ -7,10 +7,10 @@ import {ProdukcijuGrandineService} from "../../services/produkciju-grandine.serv
 
 @Component({
   selector: 'app-plano-kurimas',
-  templateUrl: './plano-kurimas.component.html',
-  styleUrls: ['./plano-kurimas.component.scss']
+  templateUrl: './kurti-grandine.component.html',
+  styleUrls: ['./kurti-grandine.component.scss']
 })
-export class PlanoKurimasComponent implements OnInit {
+export class KurtiGrandineComponent implements OnInit {
 
   //produkcija:Produkcija = new Produkcija();
   produkcijos:Produkcija[] = [];
@@ -34,7 +34,6 @@ export class PlanoKurimasComponent implements OnInit {
 
   issaugoti() {
     this.produkcijuGrandineService.issaugotiGrandine(this.grandine);
-    console.log(this.grandine);
   }
 
 }

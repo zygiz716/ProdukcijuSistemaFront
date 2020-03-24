@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Produkcija} from "../model/produkcija";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdukcijaService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   issaugotiProdukcija(produkcija: Produkcija) {
     this.httpClient.post<Produkcija>('http://localhost:8080/produkcijos/kurti-nauja', produkcija).subscribe(id => {
       console.log(id);
+      this.router.navigate(['/produkcijos']);
     })
   }
 

@@ -3,18 +3,21 @@ import {HttpClient} from "@angular/common/http";
 import {Produkcija} from "../model/produkcija";
 import {Observable} from "rxjs";
 import {ProdukcijuGrandine} from "../model/produkciju-grandine";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdukcijuGrandineService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private router: Router) {
   }
 
   issaugotiGrandine(grandine: ProdukcijuGrandine) {
     this.httpClient.post<ProdukcijuGrandine>('http://localhost:8080/produkciju-grandines/kurti-nauja', grandine).subscribe(id => {
       console.log(id);
+      this.router.navigate(['/produkciju-grandines']);
     })
   }
 
@@ -32,6 +35,10 @@ export class ProdukcijuGrandineService {
   }
 
   getGrandines(): Observable<ProdukcijuGrandine[]> {
-    return this.httpClient.get<ProdukcijuGrandine[]>('http://localhost:8080/produkciju-grandines')
+    return this.httpClient.get<ProdukcijuGrandine[]>('http://localhost:8080/produkciju-grandines');
+  }
+
+  getGrandine(id:string | null): Observable<ProdukcijuGrandine> {
+    return this.httpClient.get<ProdukcijuGrandine>('http://localhost:8080/produkciju-grandines/' + id);
   }
 }
