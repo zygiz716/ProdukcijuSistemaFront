@@ -3,6 +3,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {Produkcija} from "../../model/produkcija";
 import {Router, RouterLink} from "@angular/router";
 import {ProdukcijaService} from "../../services/produkcija.service";
+import {ReiksmiuTipai} from "../../enums/reiksmiu-tipai.enum";
 
 @Component({
   selector: 'app-kurti-produkcija',
@@ -16,6 +17,7 @@ export class KurtiProdukcijaComponent implements OnInit {
   ivestis = new FormControl('', [Validators.required]);
   isvestis = new FormControl('', [Validators.required]);
   pavadinimas = new FormControl();
+  reiksmiuTipai = Object.keys(ReiksmiuTipai);
 
   constructor(private produkcijaService:ProdukcijaService,
               private router: Router) { }
@@ -33,6 +35,10 @@ export class KurtiProdukcijaComponent implements OnInit {
 
   issaugoti() {
     this.produkcijaService.issaugotiProdukcija(this.produkcija);
+  }
+
+  printProd(){
+    console.log(this.produkcija.ivestys)
   }
 
 }

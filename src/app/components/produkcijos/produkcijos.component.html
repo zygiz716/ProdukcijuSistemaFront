@@ -20,9 +20,9 @@
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container matColumnDef="ivestis">
-    <th mat-header-cell *matHeaderCellDef> Įvestis </th>
-    <td mat-cell *matCellDef="let element"> {{element.ivestis}} </td>
+  <ng-container matColumnDef="ivestys">
+    <th mat-header-cell *matHeaderCellDef> Įvestys </th>
+    <td mat-cell *matCellDef="let element"> <span *ngFor="let ivestis of element.ivestys">{{ivestis + ' '}}</span> </td>
   </ng-container>
 
   <!-- Symbol Column -->

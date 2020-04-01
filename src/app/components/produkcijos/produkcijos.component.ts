@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class ProdukcijosComponent implements OnInit {
 
-  stulpeliai: string[] = ['id', 'pavadinimas', 'ivestis', 'isvestis', 'trinti'];
+  stulpeliai: string[] = ['id', 'pavadinimas', 'ivestys', 'isvestis', 'trinti'];
   produkcijos: Produkcija [] = [];
   dataSource = this.produkcijos;
 
@@ -44,10 +44,4 @@ export class ProdukcijosComponent implements OnInit {
   }
 
 }
-
-const ELEMENT_DATA: Produkcija[] = [
-  {id: 1, pavadinimas: 'Iš A į B', ivestis: 'A', isvestis: 'B'},
-  {id: 2, pavadinimas: 'Iš B į C', ivestis: 'B', isvestis: 'C'},
-  {id: 3, pavadinimas: 'Iš C į D', ivestis: 'C', isvestis: 'D'}
-];
 

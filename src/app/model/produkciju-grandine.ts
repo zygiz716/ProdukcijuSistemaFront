@@ -3,7 +3,7 @@ import {Produkcija} from "./produkcija";
 export class ProdukcijuGrandine {
   id: number;
   pavadinimas: string;
-  ivestis: string;
+  ivestys: string [] = [];
   isvestis: string;
   produkcijos: Produkcija [] = [];
 }

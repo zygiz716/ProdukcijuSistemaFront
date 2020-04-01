@@ -6,6 +6,7 @@ import {ProdukcijosComponent} from "./components/produkcijos/produkcijos.compone
 import {ProdukcijuGrandinesComponent} from "./components/produkciju-grandines/produkciju-grandines.component";
 import {KurtiProdukcijaComponent} from "./components/kurti-produkcija/kurti-produkcija.component";
 import {GrandinesVykdymasComponent} from "./components/grandines-vykdymas/grandines-vykdymas.component";
+import {TiesioginisIsvedimasComponent} from "./components/tiesioginis-isvedimas/tiesioginis-isvedimas.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/pagrindinis', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'produkcijos/kurti-nauja', component: KurtiProdukcijaComponent },
   { path: 'produkciju-grandines', component: ProdukcijuGrandinesComponent },
   { path: 'produkciju-grandines/kurti-nauja', component: KurtiGrandineComponent },
+  { path: 'tiesioginis-isvedimas', component: TiesioginisIsvedimasComponent },
   { path: 'grandines-vykdymas/:id', component: GrandinesVykdymasComponent },
   { path: '**', redirectTo: '/pagrindinis', pathMatch: 'full' },
 ];

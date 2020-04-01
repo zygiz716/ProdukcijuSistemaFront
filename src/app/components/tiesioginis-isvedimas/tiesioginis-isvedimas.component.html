@@ -1,0 +1,27 @@
+<p>tiesioginis-isvedimas works!</p>
+  <mat-form-field appearance="outline">
+    <textarea name="pavadinimas" [ngModel]="duomenys | async" (ngModelChange)="setValue($event)" matInput
+              placeholder="Įveskite tekstą" [formControl]="tekstas">
+    </textarea>
+    <mat-label>Tekstas</mat-label>
+  </mat-form-field>
+<div>
+  <mat-form-field>
+    <mat-label>Įvesties tipai</mat-label>
+    <mat-select multiple [(ngModel)]="isvedimasInfo.ivestys" disableOptionCentering>
+      <mat-option *ngFor="let produkcija of reiksmiuTipai" [value]="produkcija">{{produkcija}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div>
+  <mat-form-field>
+    <mat-label>Išvesties tipas</mat-label>
+    <mat-select [(ngModel)]="isvedimasInfo.isvestis" disableOptionCentering>
+      <mat-option *ngFor="let produkcija of reiksmiuTipai"
+                  [value]="produkcija">{{produkcija}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="example-button-row button-margin">
+  <button (click)="vykdyti()" mat-raised-button class="button">Vykdyti</button>
+</div>

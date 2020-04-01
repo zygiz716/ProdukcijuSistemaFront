@@ -8,6 +8,8 @@ import {BehaviorSubject} from "rxjs";
 import {GrandineVykdymasService} from "../../services/grandine-vykdymas.service";
 import {GrandinesInfo} from "../../model/grandines-info";
 import {TipasA} from "../../model/tipas-a";
+import {FormControl, Validators} from "@angular/forms";
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-grandines-vykdymas',
@@ -17,7 +19,9 @@ import {TipasA} from "../../model/tipas-a";
 export class GrandinesVykdymasComponent implements OnInit {
 
   grandine: ProdukcijuGrandine = new ProdukcijuGrandine();
-  tipasA = new BehaviorSubject<TipasA>(new TipasA());
+  //tipasA = new BehaviorSubject<TipasA>(null);
+  duomenys = new BehaviorSubject<string>('');
+  tekstas = new FormControl();
 
   constructor(private _Activatedroute: ActivatedRoute,
               private grandineService: ProdukcijuGrandineService,
@@ -39,7 +43,7 @@ export class GrandinesVykdymasComponent implements OnInit {
       this.grandine = item;
       if(this.grandine.produkcijos.length > 0) {
         this.grandine.isvestis = this.grandine.produkcijos[this.grandine.produkcijos.length - 1].isvestis;
-        this.grandine.ivestis = this.grandine.produkcijos[0].ivestis;
+        this.grandine.ivestys = this.grandine.produkcijos[0].ivestys;
       }
       console.log(this.grandine);
     });
@@ -50,11 +54,29 @@ export class GrandinesVykdymasComponent implements OnInit {
     let info = new GrandinesInfo();
     info.ivestis = 'A';
     info.isvestis = 'B';
-    info.ivestiesDuomenys = this.tipasA.value.duomenys;
+    info.ivestiesDuomenys = this.duomenys.getValue();
+    console.log('dsafsadsaffdsadfdsafdsadfsa')
     this.grandineVykdymasService.vykdyti(info).subscribe( value => {
       console.log(value);
-      this.tipasA.next(value);
+      this.duomenys.next(value.duomenys);
     });
+  }
+
+  vykdytiImage(){
+    let info = new GrandinesInfo();
+    info.ivestis = 'A';
+    info.isvestis = 'B';
+    info.ivestiesDuomenys = this.duomenys.getValue();
+    console.log('dsafsadsaffdsadfdsafdsadfsa')
+/*    this.grandineVykdymasService.vykdytiImage(info).subscribe( value => {
+      console.log(value);
+      saveAs(value, 'paveikslelis.jpg');
+    });*/
+    this.grandineVykdymasService.gautiFaila(info);
+  }
+
+  setValue(data:string){
+    this.duomenys.next(data);
   }
 
 }

@@ -17,19 +17,16 @@ export class Pagrindinis implements OnInit{
     let p1:Produkcija = new Produkcija()
     p1.id=1;
     p1.pavadinimas='Iš A Į B';
-    p1.ivestis = 'A';
     p1.isvestis = 'B';
 
     let p2:Produkcija = new Produkcija()
     p2.id=2;
     p2.pavadinimas='Iš B Į C';
-    p2.ivestis = 'B';
     p2.isvestis = 'C';
 
     let p3:Produkcija = new Produkcija()
     p3.id=3;
     p3.pavadinimas='Iš C Į D';
-    p3.ivestis = 'C';
     p3.isvestis = 'D';
 
     this.produkcijos.push(p1);

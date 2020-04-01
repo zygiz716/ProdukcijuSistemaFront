@@ -16,7 +16,6 @@ export class KurtiGrandineComponent implements OnInit {
   produkcijos:Produkcija[] = [];
   grandine:ProdukcijuGrandine = new ProdukcijuGrandine();
 
-  produkcijosFormControl = new FormControl('', [Validators.required]);
   pavadinimas = new FormControl();
 
   constructor(private produkcijaService:ProdukcijaService,
@@ -26,10 +25,6 @@ export class KurtiGrandineComponent implements OnInit {
     this.produkcijaService.getProdukcijos().subscribe(list => {
       this.produkcijos = list;
     })
-  }
-
-  getErrorMessageProdukcijos() {
-    return this.produkcijosFormControl.hasError('required') ? 'Pasirinkite bent vieną produkciją' : '';
   }
 
   issaugoti() {

@@ -1,10 +1,16 @@
-<p>grandines-vykdymas works!</p>
-<mat-form-field>
-  <mat-label>Autosize textarea</mat-label>
-  <textarea
-    [(ngModel)]="tipasA.value.duomenys"></textarea>
-</mat-form-field>
+<h1 class="header1">Produkcijų grandinės vykdymas</h1>
+<div>
+  <mat-form-field appearance="outline">
+    <textarea name="pavadinimas" [ngModel]="duomenys | async" (ngModelChange)="setValue($event)" matInput
+              placeholder="Įveskite tekstą" [formControl]="tekstas">
+    </textarea>
+    <mat-label>Tekstas</mat-label>
+  </mat-form-field>
+</div>
 
 <div class="example-button-row button-margin">
   <button (click)="vykdyti()" mat-raised-button class="button">Vykdyti</button>
+</div>
+<div class="example-button-row button-margin">
+  <button (click)="vykdytiImage()" mat-raised-button class="button">Vykdyti</button>
 </div>

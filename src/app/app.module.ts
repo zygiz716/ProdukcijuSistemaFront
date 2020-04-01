@@ -15,6 +15,7 @@ import { ProdukcijosComponent } from './components/produkcijos/produkcijos.compo
 import { ProdukcijuGrandinesComponent } from './components/produkciju-grandines/produkciju-grandines.component';
 import { KurtiProdukcijaComponent } from './components/kurti-produkcija/kurti-produkcija.component';
 import { GrandinesVykdymasComponent } from './components/grandines-vykdymas/grandines-vykdymas.component';
+import { TiesioginisIsvedimasComponent } from './components/tiesioginis-isvedimas/tiesioginis-isvedimas.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { GrandinesVykdymasComponent } from './components/grandines-vykdymas/gran
     ProdukcijosComponent,
     ProdukcijuGrandinesComponent,
     KurtiProdukcijaComponent,
-    GrandinesVykdymasComponent
+    GrandinesVykdymasComponent,
+    TiesioginisIsvedimasComponent
   ],
   entryComponents: [AppComponent],
   bootstrap: [ AppComponent ],
