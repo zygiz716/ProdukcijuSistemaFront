@@ -17,7 +17,7 @@ export class KurtiProdukcijaComponent implements OnInit {
   ivestis = new FormControl('', [Validators.required]);
   isvestis = new FormControl('', [Validators.required]);
   pavadinimas = new FormControl();
-  reiksmiuTipai = Object.keys(ReiksmiuTipai);
+  reiksmiuTipai = Object.values(ReiksmiuTipai);
 
   constructor(private produkcijaService:ProdukcijaService,
               private router: Router) { }

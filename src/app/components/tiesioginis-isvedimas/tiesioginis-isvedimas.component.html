@@ -1,5 +1,5 @@
 <p>tiesioginis-isvedimas works!</p>
-  <mat-form-field appearance="outline">
+  <mat-form-field class="text-field" appearance="outline">
     <textarea name="pavadinimas" [ngModel]="duomenys | async" (ngModelChange)="setValue($event)" matInput
               placeholder="Įveskite tekstą" [formControl]="tekstas">
     </textarea>
@@ -19,6 +19,27 @@
     <mat-select [(ngModel)]="isvedimasInfo.isvestis" disableOptionCentering>
       <mat-option *ngFor="let produkcija of reiksmiuTipai"
                   [value]="produkcija">{{produkcija}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<mat-form-field class="text-field1" appearance="outline" *ngIf="isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.A)">
+    <textarea name="paprastasTekstas" [(ngModel)]="grandinesVykdymasService.paprastasTekstas" matInput
+              placeholder="Įveskite tekstą" [formControl]="tekstas1">
+    </textarea>
+  <mat-label>Paprastas tekstas</mat-label>
+</mat-form-field>
+
+<mat-form-field class="text-field2" appearance="outline" *ngIf="isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.B)">
+    <textarea name="didelisTekstas" [(ngModel)]="grandinesVykdymasService.didelisTekstas" matInput
+              placeholder="Įveskite tekstą" [formControl]="tekstas2">
+    </textarea>
+  <mat-label>Tekstas didelėmis raidėmis</mat-label>
+</mat-form-field>
+<div>
+  <mat-form-field class="text-field3" appearance="outline" *ngIf="isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.C)">
+    <mat-label>Spalva</mat-label>
+    <mat-select [(ngModel)]="grandinesVykdymasService.spalva" disableOptionCentering>
+      <mat-option *ngFor="let spalva of spalvos" [value]="spalva">{{spalva}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>

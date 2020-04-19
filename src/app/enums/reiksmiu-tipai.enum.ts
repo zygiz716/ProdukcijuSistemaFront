@@ -1,6 +1,6 @@
 export enum ReiksmiuTipai {
-  A = 'A',
-  B = 'B',
-  C = 'C',
-  D = 'D'
+  A = 'Paprastas tekstas',
+  B = 'Tekstas didžiosiom raidėmis',
+  C = 'Teksto Spalva',
+  D = 'Paveikslelis'
 }
