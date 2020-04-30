@@ -10,6 +10,9 @@ import {GrandinesInfo} from "../../model/grandines-info";
 import {TipasA} from "../../model/tipas-a";
 import {FormControl, Validators} from "@angular/forms";
 import { saveAs } from 'file-saver';
+import {ReiksmiuTipai} from "../../enums/reiksmiu-tipai.enum";
+import {Spalvos} from "../../enums/spalvos.enum";
+import {IsvedimasInfo} from "../../model/isvedimas-info";
 
 @Component({
   selector: 'app-grandines-vykdymas',
@@ -20,16 +23,23 @@ export class GrandinesVykdymasComponent implements OnInit {
 
   grandine: ProdukcijuGrandine = new ProdukcijuGrandine();
   //tipasA = new BehaviorSubject<TipasA>(null);
-  duomenys = new BehaviorSubject<string>('');
+  //duomenys = new BehaviorSubject<string>('');
   tekstas = new FormControl();
 
   constructor(private _Activatedroute: ActivatedRoute,
               private grandineService: ProdukcijuGrandineService,
               private _ngZone: NgZone,
-              private grandineVykdymasService: GrandineVykdymasService) {
+              public grandinesVykdymasService: GrandineVykdymasService) {
   }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
+  reiksmiuTipai = Object.values(ReiksmiuTipai);
+  spalvos = Object.values(Spalvos);
+  reiksmiuTipuReiksmes = ReiksmiuTipai;
+  isvedimasInfo: IsvedimasInfo = new IsvedimasInfo();
+  duomenys = new BehaviorSubject<string>('');
+  tekstas1 = new FormControl();
+  tekstas2 = new FormControl();
 
   triggerResize() {
     // Wait for changes to be applied, then trigger textarea resize.
@@ -41,25 +51,17 @@ export class GrandinesVykdymasComponent implements OnInit {
     const id = this._Activatedroute.snapshot.paramMap.get("id");
     this.grandineService.getGrandine(id).subscribe(item => {
       this.grandine = item;
-      if(this.grandine.produkcijos.length > 0) {
-        this.grandine.isvestis = this.grandine.produkcijos[this.grandine.produkcijos.length - 1].isvestis;
-        this.grandine.ivestys = this.grandine.produkcijos[0].ivestys;
-      }
+      this.grandinesVykdymasService.suplanuotosProdukcijos = this.grandine.produkcijos;
+        this.isvedimasInfo.ivestys = item.ivestys;
+      this.isvedimasInfo.isvestis = item.isvestis;
+      console.log(this.isvedimasInfo);
       console.log(this.grandine);
     });
 
   }
 
   vykdyti(){
-    let info = new GrandinesInfo();
-    info.ivestis = 'A';
-    info.isvestis = 'B';
-    info.ivestiesDuomenys = this.duomenys.getValue();
-    console.log('dsafsadsaffdsadfdsafdsadfsa')
-    this.grandineVykdymasService.vykdyti(info).subscribe( value => {
-      console.log(value);
-      this.duomenys.next(value.duomenys);
-    });
+    this.grandinesVykdymasService.vykdytiGamybosGrandine()
   }
 
   vykdytiImage(){
@@ -72,7 +74,7 @@ export class GrandinesVykdymasComponent implements OnInit {
       console.log(value);
       saveAs(value, 'paveikslelis.jpg');
     });*/
-    this.grandineVykdymasService.gautiFaila(info);
+    this.grandinesVykdymasService.gautiFaila(info);
   }
 
   setValue(data:string){

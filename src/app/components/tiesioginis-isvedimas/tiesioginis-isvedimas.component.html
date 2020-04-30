@@ -1,4 +1,14 @@
 <p>tiesioginis-isvedimas works!</p>
+<div>
+  <mat-form-field>
+    <mat-label>Išvesties būdas</mat-label>
+    <select [(ngModel)]="isvestiesBudas" matNativeControl required>
+      <option value="tiesioginis">Tiesioginis išvedimas</option>
+      <option value="atbulinis">Atbulinis išvedimas</option>
+      <option value="suKaina">Išvedimas su kaina</option>
+    </select>
+  </mat-form-field>
+</div>
   <mat-form-field class="text-field" appearance="outline">
     <textarea name="pavadinimas" [ngModel]="duomenys | async" (ngModelChange)="setValue($event)" matInput
               placeholder="Įveskite tekstą" [formControl]="tekstas">
@@ -22,7 +32,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<mat-form-field class="text-field1" appearance="outline" *ngIf="isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.A)">
+<!--<mat-form-field class="text-field1" appearance="outline" *ngIf="isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.A)">
     <textarea name="paprastasTekstas" [(ngModel)]="grandinesVykdymasService.paprastasTekstas" matInput
               placeholder="Įveskite tekstą" [formControl]="tekstas1">
     </textarea>
@@ -42,7 +52,7 @@
       <mat-option *ngFor="let spalva of spalvos" [value]="spalva">{{spalva}}</mat-option>
     </mat-select>
   </mat-form-field>
-</div>
+</div>-->
 <div class="example-button-row button-margin">
-  <button (click)="vykdyti()" mat-raised-button class="button">Vykdyti</button>
+  <button (click)="vykdytiIsvedima()" mat-raised-button class="button">Vykdyti</button>
 </div>

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {GrandinesInfo} from "../model/grandines-info";
 import {TipasA} from "../model/tipas-a";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import { saveAs } from 'file-saver';
 import {Produkcija} from "../model/produkcija";
 import {Tekstas} from "../model/tekstas";
@@ -15,10 +15,24 @@ export class GrandineVykdymasService {
 
   paprastasTekstas: string;
   didelisTekstas: string;
+  zemelapioPavadinimas: BehaviorSubject<string> = new BehaviorSubject<string>('Visos produkcijos')
   spalva: string;
   suplanuotosProdukcijos: Produkcija[] = [];
+  rodytiAnimacijosLanga: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  produkcijosRodymui: BehaviorSubject<Produkcija[]> = new BehaviorSubject<Produkcija[]>([]);
+  atnaujintiAnimacija: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  nodes = [
+    { id: 0, reflexive: false },
+    { id: 'labas vakaras', reflexive: false },
+    { id: 2, reflexive: false }
+  ];
+  links = [
+    { source: this.nodes[0], target: this.nodes[1], left: false, right: true, type: "KNOWS" },
+    { source: this.nodes[1], target: this.nodes[2], left: false, right: true }
+  ];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   vykdyti(grandinesInfo: GrandinesInfo):Observable<TipasA> {
     return this.httpClient.post<TipasA>('http://localhost:8080/produkciju-vykdymas', grandinesInfo)
@@ -50,7 +64,10 @@ export class GrandineVykdymasService {
         this.padidintiTeksta()
       }
       if(this.suplanuotosProdukcijos[0].id === 30 && this.didelisTekstas !== null && this.spalva !== null){
-        this.gautiTekstoPaveiksleli()
+        this.gautiTekstoPaveiksleli(this.didelisTekstas)
+      }
+      if(this.suplanuotosProdukcijos[0].id === 31 && this.paprastasTekstas !== null){
+        this.gautiTekstoPaveiksleli(this.paprastasTekstas)
       }
     }
   }
@@ -69,16 +86,16 @@ export class GrandineVykdymasService {
       );
     }
 
-  gautiTekstoPaveiksleli() {
-let info: InfoPaveiksleliui = new InfoPaveiksleliui();
-info.spalva = this.spalva;
-info.tekstas = this.didelisTekstas;
-    this.httpClient.post('http://localhost:8080/produkciju-vykdymas/paveikslelio-sukurimas', info,{ responseType: 'arraybuffer'}).subscribe(
+  gautiTekstoPaveiksleli(tekstas: string) {
+    let info: InfoPaveiksleliui = new InfoPaveiksleliui();
+    info.spalva = this.spalva;
+    info.tekstas = tekstas;
+    this.httpClient.post('http://localhost:8080/produkciju-vykdymas/paveikslelio-sukurimas', info, {responseType: 'arraybuffer'}).subscribe(
       failas => {
         //var blob = new Blob(, { type: 'application/jpg' });
         console.log(failas);
         //var byteArray = new Uint8Array(response[0].binFileImage);
-        var blob = new Blob([failas], { type: 'application/jpg' });
+        var blob = new Blob([failas], {type: 'application/jpg'});
         console.log(blob);
         saveAs(blob, 'paveikslelis.jpg');
         this.suplanuotosProdukcijos.shift();

@@ -21,6 +21,13 @@ export class ProdukcijuGrandineService {
     })
   }
 
+  issaugotiIsvedimoGrandine(grandine: ProdukcijuGrandine) {
+    this.httpClient.post<ProdukcijuGrandine>('http://localhost:8080/produkciju-grandines/kurti-nauja', grandine).subscribe(id => {
+      console.log(id);
+
+    })
+  }
+
   atnaujintiGrandine(grandine: ProdukcijuGrandine) {
     this.httpClient.patch<ProdukcijuGrandine>('http://localhost:8080/produkciju-grandines/kurti-nauja', grandine).subscribe(id => {
       console.log(id);
@@ -39,6 +46,7 @@ export class ProdukcijuGrandineService {
   }
 
   getGrandine(id:string | null): Observable<ProdukcijuGrandine> {
+    console.log(id);
     return this.httpClient.get<ProdukcijuGrandine>('http://localhost:8080/produkciju-grandines/' + id);
   }
 }

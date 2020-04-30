@@ -288,6 +288,10 @@ svg#clouds {
   margin-bottom: 48px;
 }
 
+.mt-5{
+  margin-top: 50px!important;
+}
+
 .mx-10{
   margin-right: 1%;
   margin-left: 1%;
@@ -305,6 +309,10 @@ svg#clouds {
   min-width: 70%;
 }
 
+.center {
+  text-align: center;
+}
+
 .row{
   display: inline;
 }
@@ -319,4 +327,62 @@ svg#clouds {
 
 .ml-50{
   margin-left:50px;
+}
+
+::ng-deep svg {
+  background-color: white;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+::ng-deep svg:not(.active):not(.ctrl) {
+  cursor: crosshair;
+}
+
+::ng-deep path.link {
+  fill: none;
+  stroke: #999;
+  stroke-width: 5px;
+  cursor: default;
+}
+
+::ng-deep svg:not(.active):not(.ctrl) path.link {
+  cursor: pointer;
+}
+
+::ng-deep path.link.selected {
+  stroke: #d20100;
+  stroke-dasharray: 10,2;
+}
+
+::ng-deep path.link.dragline {
+  pointer-events: none;
+}
+
+::ng-deep path.link.hidden {
+  stroke-width: 0px;
+}
+
+::ng-deep circle.node {
+  stroke-width: 1.5px;
+  cursor: pointer;
+}
+
+::ng-deep circle.node.reflexive {
+  stroke: #000 !important;
+  stroke-width: 2.5px;
+}
+
+::ng-deep text {
+  font: 12px sans-serif;
+  pointer-events: none;
+}
+
+::ng-deep text.id {
+  text-anchor: middle;
+  font-weight: bold;
 }

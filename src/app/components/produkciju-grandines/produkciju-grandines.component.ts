@@ -34,11 +34,15 @@ export class ProdukcijuGrandinesComponent implements OnInit {
       }
     )
   }
-  stulpeliai: string[] = ['vykdyti','id', 'pavadinimas', 'produkcijos'];
+  stulpeliai: string[] = ['vykdyti', 'trinti', 'id', 'pavadinimas', 'produkcijos'];
   dataSource = this.grandines;
 
   vykdyti(id: number) {
     //this.produkcijaService.trintiProdukcija(id);
     this.router.navigate(['/grandines-vykdymas/' + id]);
+  }
+  trinti(id:number){
+    this.grandineService.trintiGrandine(id);
+    location.reload();
   }
 }

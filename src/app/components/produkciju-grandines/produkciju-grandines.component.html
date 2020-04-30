@@ -16,6 +16,15 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="trinti">
+    <th mat-header-cell *matHeaderCellDef> Trinti </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="trinti(element.id)">
+        <mat-icon class="mat-18">trinti</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>

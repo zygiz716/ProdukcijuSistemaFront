@@ -1,10 +1,23 @@
 <h1 class="header1">Produkcijų grandinės vykdymas</h1>
-<div>
-  <mat-form-field appearance="outline">
-    <textarea name="pavadinimas" [ngModel]="duomenys | async" (ngModelChange)="setValue($event)" matInput
-              placeholder="Įveskite tekstą" [formControl]="tekstas">
+<mat-form-field class="text-field1" appearance="outline" *ngIf="isvedimasInfo.ivestys && isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.A)">
+    <textarea name="paprastasTekstas" [(ngModel)]="grandinesVykdymasService.paprastasTekstas" matInput
+              placeholder="Įveskite tekstą" [formControl]="tekstas1">
     </textarea>
-    <mat-label>Tekstas</mat-label>
+  <mat-label>Paprastas tekstas1</mat-label>
+</mat-form-field>
+
+<mat-form-field class="text-field2" appearance="outline" *ngIf="isvedimasInfo.ivestys && isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.B)">
+    <textarea name="didelisTekstas" [(ngModel)]="grandinesVykdymasService.didelisTekstas" matInput
+              placeholder="Įveskite tekstą" [formControl]="tekstas2">
+    </textarea>
+  <mat-label>Tekstas didelėmis raidėmis</mat-label>
+</mat-form-field>
+<div>
+  <mat-form-field class="text-field3" appearance="outline" *ngIf="isvedimasInfo.ivestys && isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.C)">
+    <mat-label>Spalva</mat-label>
+    <mat-select [(ngModel)]="grandinesVykdymasService.spalva" disableOptionCentering>
+      <mat-option *ngFor="let spalva of spalvos" [value]="spalva">{{spalva}}</mat-option>
+    </mat-select>
   </mat-form-field>
 </div>
 

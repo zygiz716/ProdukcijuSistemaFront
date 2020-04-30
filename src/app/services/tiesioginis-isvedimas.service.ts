@@ -16,4 +16,12 @@ export class TiesioginisIsvedimasService {
   vykdyti(info: IsvedimasInfo):Observable<IsvedimoDuomenys> {
     return this.httpClient.post<IsvedimoDuomenys>('http://localhost:8080/produkciju-isvedimas/tiesioginis-isvedimas', info)
   }
+
+  vykdytiAtbulinis(info: IsvedimasInfo):Observable<IsvedimoDuomenys> {
+    return this.httpClient.post<IsvedimoDuomenys>('http://localhost:8080/produkciju-isvedimas/atbulinis-isvedimas', info)
+  }
+
+  vykdytiSuKaina(info: IsvedimasInfo):Observable<IsvedimoDuomenys> {
+    return this.httpClient.post<IsvedimoDuomenys>('http://localhost:8080/produkciju-isvedimas/isvedimas-su-kaina', info)
+  }
 }

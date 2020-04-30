@@ -3,4 +3,5 @@ export class Produkcija {
   pavadinimas: string;
   isvestis: string;
   ivestys: string [] = [];
+  kaina: number;
 }
