@@ -1,23 +1,25 @@
-<h1 class="header1">Produkcijų grandinės vykdymas</h1>
+<h1 class="header1">Produkcijų plano vykdymas</h1>
 <mat-form-field class="text-field1" appearance="outline" *ngIf="isvedimasInfo.ivestys && isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.A)">
     <textarea name="paprastasTekstas" [(ngModel)]="grandinesVykdymasService.paprastasTekstas" matInput
               placeholder="Įveskite tekstą" [formControl]="tekstas1">
     </textarea>
-  <mat-label>Paprastas tekstas1</mat-label>
+  <mat-label>Paprastas tekstas</mat-label>
 </mat-form-field>
 
-<mat-form-field class="text-field2" appearance="outline" *ngIf="isvedimasInfo.ivestys && isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.B)">
+<mat-form-field class="text-field2" appearance="outline" *ngIf="(isvedimasInfo.ivestys && isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.B)) || (isvedimasInfo.isvestis && isvedimasInfo.isvestis.includes(reiksmiuTipuReiksmes.B))">
     <textarea name="didelisTekstas" [(ngModel)]="grandinesVykdymasService.didelisTekstas" matInput
               placeholder="Įveskite tekstą" [formControl]="tekstas2">
     </textarea>
   <mat-label>Tekstas didelėmis raidėmis</mat-label>
 </mat-form-field>
 <div>
+  Spalva
   <mat-form-field class="text-field3" appearance="outline" *ngIf="isvedimasInfo.ivestys && isvedimasInfo.ivestys.includes(reiksmiuTipuReiksmes.C)">
     <mat-label>Spalva</mat-label>
-    <mat-select [(ngModel)]="grandinesVykdymasService.spalva" disableOptionCentering>
+<!--    <mat-select [(ngModel)]="grandinesVykdymasService.spalva" disableOptionCentering>
       <mat-option *ngFor="let spalva of spalvos" [value]="spalva">{{spalva}}</mat-option>
-    </mat-select>
+    </mat-select>-->
+    <input [(colorPicker)]="grandinesVykdymasService.spalva" [style.background]="grandinesVykdymasService.spalva"/>
   </mat-form-field>
 </div>
 

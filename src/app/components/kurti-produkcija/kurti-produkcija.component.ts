@@ -4,6 +4,7 @@ import {Produkcija} from "../../model/produkcija";
 import {Router, RouterLink} from "@angular/router";
 import {ProdukcijaService} from "../../services/produkcija.service";
 import {ReiksmiuTipai} from "../../enums/reiksmiu-tipai.enum";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-kurti-produkcija',
@@ -17,7 +18,8 @@ export class KurtiProdukcijaComponent implements OnInit {
   ivestis = new FormControl('', [Validators.required]);
   isvestis = new FormControl('', [Validators.required]);
   pavadinimas = new FormControl();
-  reiksmiuTipai = Object.values(ReiksmiuTipai);
+  reiksmiuTipai = Object.keys(ReiksmiuTipai);
+  error = new BehaviorSubject(false);
 
   constructor(private produkcijaService:ProdukcijaService,
               private router: Router) { }
@@ -26,7 +28,7 @@ export class KurtiProdukcijaComponent implements OnInit {
   }
 
   getErrorMessageIvestis() {
-    return this.ivestis.hasError('required') ? 'Įvestis privaloma' : '';
+
   }
 
   getErrorMessageIsvestis() {
@@ -34,7 +36,11 @@ export class KurtiProdukcijaComponent implements OnInit {
   }
 
   issaugoti() {
-    this.produkcijaService.issaugotiProdukcija(this.produkcija);
+    if(this.pavadinimas.valid && this.ivestis.valid && this.isvestis.valid) {
+      this.produkcijaService.issaugotiProdukcija(this.produkcija);
+    } else {
+      this.error.next(true);
+    }
   }
 
   printProd(){

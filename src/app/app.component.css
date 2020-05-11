@@ -373,6 +373,9 @@ svg#clouds {
 }
 
 ::ng-deep circle.node.reflexive {
+  flood-color: #d20100 !important;
+  background-color: #d20100 !important;
+  color: #d20100 !important;
   stroke: #000 !important;
   stroke-width: 2.5px;
 }

@@ -3,8 +3,8 @@
   <a class="ml-20 ml-50" routerLink="/pagrindinis">Pagrindinis</a>
 <!--  <a class="ml-20" routerLink="/plano-kurimas">Kurti gamybos planą</a>-->
   <a class="ml-20" routerLink="/produkcijos">Produkcijų sąrašas</a>
-  <a class="ml-20" routerLink="/produkciju-grandines">Produkcijų grandinių sąrašas</a>
-  <a class="ml-20" routerLink="/tiesioginis-isvedimas">Tiesioginis išvedimas</a>
+  <a class="ml-20" routerLink="/produkciju-grandines">Gamybos planų sąrašas</a>
+  <a class="ml-20" routerLink="/tiesioginis-isvedimas">Grandinės planavimas</a>
 </div>
 <div class="row ">
   <div class="column left">
@@ -24,7 +24,17 @@
       width="100%"
       height="100%"
       class="associations"
-      #graphContainer>
+     #graphContainer>
+  <g>
+    <g transform="translate(50,30)">
+      <circle class="node" r="12" style="fill: rgb(0, 255, 0); stroke: rgb(0, 0, 0);"></circle>
+      <text x="80" y="4" class="id">Objekto žymėjimas</text>
+    </g>
+    <g transform="translate(50,70)">
+      <circle class="node reflexive" r="12" style="fill: rgb(255, 255, 255); stroke: rgb(0, 0, 0);"></circle>
+      <text x="93" y="4" class="id">Produkcijos žymėjimas</text>
+    </g>
+  </g>
 </svg>
   </div>
   <div *ngIf="this.selectedLink" class="column right">
@@ -32,9 +42,9 @@
     <div class="m1">{{this.selectedLink.produkcijaId}}</div>
     <h3>Pavadinimas</h3>
     <div class="m1">{{this.selectedLink.pavadinimas}}</div>
-    <h3>Produkcijos ivestys</h3>
+    <h3>Produkcijos įvestys</h3>
     <div *ngFor="let ivestis of selectedLink.ivestys" class="m1">{{ivestis}}</div>
-    <h3>Produkcijos isvestis</h3>
+    <h3>Produkcijos išvestis</h3>
     <div class="m1">{{this.selectedLink.isvestis}}</div>
     <ng-container *ngIf="this.selectedLink.kaina">
       <h3>Produkcijos kaina</h3>

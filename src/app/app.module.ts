@@ -16,9 +16,11 @@ import { ProdukcijuGrandinesComponent } from './components/produkciju-grandines/
 import { KurtiProdukcijaComponent } from './components/kurti-produkcija/kurti-produkcija.component';
 import { GrandinesVykdymasComponent } from './components/grandines-vykdymas/grandines-vykdymas.component';
 import { TiesioginisIsvedimasComponent } from './components/tiesioginis-isvedimas/tiesioginis-isvedimas.component';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   imports: [
+    ColorPickerModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,

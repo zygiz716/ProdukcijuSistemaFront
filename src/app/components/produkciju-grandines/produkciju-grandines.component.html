@@ -16,6 +16,15 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="perziureti">
+    <th mat-header-cell *matHeaderCellDef> Peržiūrėti </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="perziureti(element.produkcijos, element.id)">
+        <button class="mat-primary">Peržiūrėti</button>
+      </button>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="trinti">
     <th mat-header-cell *matHeaderCellDef> Trinti </th>
     <td mat-cell *matCellDef="let element">

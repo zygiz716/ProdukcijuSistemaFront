@@ -4,6 +4,7 @@ import {Produkcija} from "../../model/produkcija";
 import {ProdukcijuGrandine} from "../../model/produkciju-grandine";
 import {ProdukcijuGrandineService} from "../../services/produkciju-grandine.service";
 import {Router} from "@angular/router";
+import {GrandineVykdymasService} from "../../services/grandine-vykdymas.service";
 
 @Component({
   selector: 'app-produkciju-grandines',
@@ -22,6 +23,7 @@ export class ProdukcijuGrandinesComponent implements OnInit {
   grandines: ProdukcijuGrandine [] = [];
 
   constructor(private grandineService: ProdukcijuGrandineService,
+              private grandineVykdymasService:GrandineVykdymasService,
               private router: Router) {
   }
 
@@ -34,7 +36,7 @@ export class ProdukcijuGrandinesComponent implements OnInit {
       }
     )
   }
-  stulpeliai: string[] = ['vykdyti', 'trinti', 'id', 'pavadinimas', 'produkcijos'];
+  stulpeliai: string[] = ['vykdyti', 'trinti', 'id', 'pavadinimas', 'produkcijos', 'perziureti'];
   dataSource = this.grandines;
 
   vykdyti(id: number) {
@@ -44,5 +46,10 @@ export class ProdukcijuGrandinesComponent implements OnInit {
   trinti(id:number){
     this.grandineService.trintiGrandine(id);
     location.reload();
+  }
+
+  perziureti(produkcijos: Produkcija[], id: number) {
+    this.grandineVykdymasService.produkcijosRodymui.next(produkcijos);
+    this.grandineVykdymasService.zemelapioPavadinimas.next('Pasirinktas planas id = '+id)
   }
 }

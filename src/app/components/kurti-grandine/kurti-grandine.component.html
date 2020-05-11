@@ -2,14 +2,35 @@
 
 <div>
   <mat-form-field appearance="outline">
-    <input name="pavadinimas" [(ngModel)]="grandine.pavadinimas" matInput placeholder="Įveskite pavadinimą" [formControl]="pavadinimas">
+    <input name="pavadinimas" [(ngModel)]="grandine.pavadinimas" matInput placeholder="Įveskite pavadinimą" required [formControl]="pavadinimas">
     <mat-label>Pavadinimas</mat-label>
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field>
+    <mat-label>Faktai</mat-label>
+    <mat-select multiple [(ngModel)]="grandine.ivestys" disableOptionCentering required [formControl]="ivestys">
+      <mat-option *ngFor="let produkcija of reiksmiuTipai" [value]="produkcija">{{produkcija}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="(error | async)">{{'Įvestis privaloma'}}</mat-error>
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field>
+    <mat-label>Tikslas</mat-label>
+    <mat-select [(ngModel)]="grandine.isvestis" disableOptionCentering required [formControl]="isvestis">
+      <mat-option *ngFor="let produkcija of reiksmiuTipai"
+                  [value]="produkcija">{{produkcija}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="(error | async)">{{'Išvestis privaloma'}}</mat-error>
   </mat-form-field>
 </div>
 
 <mat-form-field>
   <mat-label>Produkcijos</mat-label>
-  <mat-select multiple [(ngModel)]="grandine.produkcijos" disableOptionCentering>
+  <mat-select multiple [(ngModel)]="grandine.produkcijos" disableOptionCentering required [formControl]="produkcijaControl">
     <mat-option *ngFor="let produkcija of produkcijos" [value]="produkcija">{{produkcija.pavadinimas}}</mat-option>
   </mat-select>
 </mat-form-field>

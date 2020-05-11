@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import {GrandineVykdymasService} from "./services/grandine-vykdymas.service";
 import {ProdukcijaService} from "./services/produkcija.service";
 import {Produkcija} from "./model/produkcija";
+import {delay} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -49,24 +50,29 @@ export class AppComponent implements AfterViewInit {
   }
 
   AddNodesAndLinks(produkcijos: Produkcija[]) {
+
     this.grandineVykdymasService.nodes = [];
     this.grandineVykdymasService.links = [];
     this.selectedLink = null;
     produkcijos.forEach(produkcija => {
         let isvestis = this.grandineVykdymasService.nodes.filter(node => node.id === produkcija.isvestis);
+        let produkcijosPavadinimas: any;
         if (isvestis.length === 0) {
-          isvestis = [{id: produkcija.isvestis, reflexive: false}];
+          isvestis = [{id: produkcija.isvestis, reflexive: false, color: '00ff00'}];
           this.grandineVykdymasService.nodes.push(isvestis[0]);
         }
+      produkcijosPavadinimas = [{id: produkcija.pavadinimas, reflexive: true, color: 'ffffff', produkcijaId: produkcija.id}];
+      this.grandineVykdymasService.nodes.push(produkcijosPavadinimas[0]);
+
         produkcija.ivestys.forEach(ivestis => {
           let gautaIvestis = this.grandineVykdymasService.nodes.filter(node => node.id === ivestis);
           if (gautaIvestis.length === 0) {
-            gautaIvestis = [{id: ivestis, reflexive: false}];
+            gautaIvestis = [{id: ivestis, reflexive: false, color: '00ff00'}];
             this.grandineVykdymasService.nodes.push(gautaIvestis[0]);
           }
           let linkas = [{
             source: gautaIvestis[0],
-            target: isvestis[0],
+            target: produkcijosPavadinimas[0],
             left: false,
             right: true,
             produkcijaId: produkcija.id,
@@ -77,6 +83,18 @@ export class AppComponent implements AfterViewInit {
           }];
           this.grandineVykdymasService.links.push(linkas[0]);
         });
+      let linkas = [{
+        source: produkcijosPavadinimas[0],
+        target: isvestis[0],
+        left: false,
+        right: true,
+        produkcijaId: produkcija.id,
+        ivestys: produkcija.ivestys,
+        isvestis: produkcija.isvestis,
+        kaina: produkcija.kaina,
+        pavadinimas: produkcija.pavadinimas
+      }];
+      this.grandineVykdymasService.links.push(linkas[0]);
       }
     );
     this.restart();
@@ -381,8 +399,8 @@ export class AppComponent implements AfterViewInit {
     g.append('svg:circle')
       .attr('class', 'node')
       .attr('r', 12)
-      .style('fill', (d: { id: string; }) => (d === this.selectedNode) ? d3.rgb(this.colors(d.id)).brighter().toString() : this.colors(d.id))
-      .style('stroke', (d: { id: string; }) => d3.rgb(this.colors(d.id)).darker().toString())
+      .style('fill', (d: { color: string; }) => d.color)
+      .style('stroke', '000000')
       .classed('reflexive', (d: { reflexive: any; }) => d.reflexive)
 /*          .on('mouseover', function (d: any) {
             if (!this.mousedownNode || d === this.mousedownNode) return;
@@ -400,7 +418,21 @@ export class AppComponent implements AfterViewInit {
             // select node
             this.mousedownNode = d;
             this.selectedNode = (this.mousedownNode === this.selectedNode) ? null : this.mousedownNode;
+            if(this.mousedownNode)
             this.selectedLink = null;
+
+            this.path.classed('selected', (d1: any) => {
+                if(this.mousedownNode){
+                  if(d1.produkcijaId === this.mousedownNode.produkcijaId) {
+                    this.selectedLink = d1;
+                    return true;
+                  }}
+                return false;
+              }
+            )
+              .style('marker-start', (d: { left: any; }) => d.left ? 'url(#start-arrow)' : '')
+              .style('marker-end', (d: { right: any; }) => d.right ? 'url(#end-arrow)' : '')
+              .text(function () {return 'd.type;'});
 
             // reposition drag line
             this.dragLine

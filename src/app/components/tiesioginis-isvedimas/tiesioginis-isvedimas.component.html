@@ -10,14 +10,13 @@
   </mat-form-field>
 </div>
   <mat-form-field class="text-field" appearance="outline">
-    <textarea name="pavadinimas" [ngModel]="duomenys | async" (ngModelChange)="setValue($event)" matInput
-              placeholder="Įveskite tekstą" [formControl]="tekstas">
+    <textarea name="pavadinimas" [ngModel]="duomenys | async" (ngModelChange)="setValue($event)" matInput [formControl]="tekstas">
     </textarea>
-    <mat-label>Tekstas</mat-label>
+    <mat-label>Išvedimo informacija</mat-label>
   </mat-form-field>
 <div>
   <mat-form-field>
-    <mat-label>Įvesties tipai</mat-label>
+    <mat-label>Faktai</mat-label>
     <mat-select multiple [(ngModel)]="isvedimasInfo.ivestys" disableOptionCentering>
       <mat-option *ngFor="let produkcija of reiksmiuTipai" [value]="produkcija">{{produkcija}}</mat-option>
     </mat-select>
@@ -25,7 +24,7 @@
 </div>
 <div>
   <mat-form-field>
-    <mat-label>Išvesties tipas</mat-label>
+    <mat-label>Tikslas</mat-label>
     <mat-select [(ngModel)]="isvedimasInfo.isvestis" disableOptionCentering>
       <mat-option *ngFor="let produkcija of reiksmiuTipai"
                   [value]="produkcija">{{produkcija}}</mat-option>

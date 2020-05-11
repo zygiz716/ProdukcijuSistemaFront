@@ -22,7 +22,7 @@ export class TiesioginisIsvedimasComponent implements OnInit {
 
   isvestiesBudas: string = 'tiesioginis';
   isvedimasIvykdytas: boolean = false;
-  reiksmiuTipai = Object.values(ReiksmiuTipai);
+  reiksmiuTipai = Object.keys(ReiksmiuTipai);
   spalvos = Object.values(Spalvos);
   reiksmiuTipuReiksmes = ReiksmiuTipai;
   isvedimasInfo: IsvedimasInfo = new IsvedimasInfo();

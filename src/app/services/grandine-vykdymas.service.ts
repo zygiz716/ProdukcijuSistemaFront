@@ -22,9 +22,9 @@ export class GrandineVykdymasService {
   produkcijosRodymui: BehaviorSubject<Produkcija[]> = new BehaviorSubject<Produkcija[]>([]);
   atnaujintiAnimacija: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   nodes = [
-    { id: 0, reflexive: false },
-    { id: 'labas vakaras', reflexive: false },
-    { id: 2, reflexive: false }
+    { id: 0, reflexive: false, color: 'ff00ff' },
+    { id: 'labas vakaras', reflexive: false, color: 'ff00ff' },
+    { id: 2, reflexive: false, color: 'ff00ff' }
   ];
   links = [
     { source: this.nodes[0], target: this.nodes[1], left: false, right: true, type: "KNOWS" },
@@ -32,14 +32,6 @@ export class GrandineVykdymasService {
   ];
 
   constructor(private httpClient: HttpClient) {
-  }
-
-  vykdyti(grandinesInfo: GrandinesInfo):Observable<TipasA> {
-    return this.httpClient.post<TipasA>('http://localhost:8080/produkciju-vykdymas', grandinesInfo)
-  }
-
-  vykdytiImage(grandinesInfo: GrandinesInfo):Observable<Blob> {
-    return this.httpClient.post<Blob>('http://localhost:8080/produkciju-vykdymas/text-to-image', { responseType: 'blob'})
   }
 
   gautiFaila(info: GrandinesInfo) {
@@ -60,25 +52,23 @@ export class GrandineVykdymasService {
   vykdytiGamybosGrandine(){
     console.log(this.suplanuotosProdukcijos);
     if(this.suplanuotosProdukcijos.length > 0){
-      if(this.suplanuotosProdukcijos[0].id === 29 && this.paprastasTekstas !== null){
+      if(this.suplanuotosProdukcijos[0].pavadinimas === 'R1' && this.paprastasTekstas !== null){
         this.padidintiTeksta()
       }
-      if(this.suplanuotosProdukcijos[0].id === 30 && this.didelisTekstas !== null && this.spalva !== null){
+      if(this.suplanuotosProdukcijos[0].pavadinimas === 'R2' && this.didelisTekstas !== null && this.spalva !== null){
         this.gautiTekstoPaveiksleli(this.didelisTekstas)
       }
-      if(this.suplanuotosProdukcijos[0].id === 31 && this.paprastasTekstas !== null){
+      if(this.suplanuotosProdukcijos[0].pavadinimas === 'R3' && this.paprastasTekstas !== null){
         this.gautiTekstoPaveiksleli(this.paprastasTekstas)
       }
     }
   }
 
     padidintiTeksta() {
-    console.log(this.paprastasTekstas);
       const params = new HttpParams()
         .set('paprastasTekstas', this.paprastasTekstas)
       this.httpClient.get<Tekstas>('http://localhost:8080/produkciju-vykdymas/teksto-didinimas', {params}).subscribe(
         didelisTekstas => {
-          console.log(didelisTekstas);
           this.didelisTekstas = didelisTekstas.tekstas;
           this.suplanuotosProdukcijos.shift();
           this.vykdytiGamybosGrandine()
@@ -92,11 +82,7 @@ export class GrandineVykdymasService {
     info.tekstas = tekstas;
     this.httpClient.post('http://localhost:8080/produkciju-vykdymas/paveikslelio-sukurimas', info, {responseType: 'arraybuffer'}).subscribe(
       failas => {
-        //var blob = new Blob(, { type: 'application/jpg' });
-        console.log(failas);
-        //var byteArray = new Uint8Array(response[0].binFileImage);
         var blob = new Blob([failas], {type: 'application/jpg'});
-        console.log(blob);
         saveAs(blob, 'paveikslelis.jpg');
         this.suplanuotosProdukcijos.shift();
         this.vykdytiGamybosGrandine()

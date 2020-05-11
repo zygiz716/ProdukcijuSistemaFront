@@ -33,13 +33,14 @@ export class GrandinesVykdymasComponent implements OnInit {
   }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
-  reiksmiuTipai = Object.values(ReiksmiuTipai);
+  reiksmiuTipai = Object.keys(ReiksmiuTipai);
   spalvos = Object.values(Spalvos);
   reiksmiuTipuReiksmes = ReiksmiuTipai;
   isvedimasInfo: IsvedimasInfo = new IsvedimasInfo();
   duomenys = new BehaviorSubject<string>('');
   tekstas1 = new FormControl();
   tekstas2 = new FormControl();
+  color: string;
 
   triggerResize() {
     // Wait for changes to be applied, then trigger textarea resize.
