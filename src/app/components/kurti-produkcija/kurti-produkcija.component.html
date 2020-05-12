@@ -1,36 +1,43 @@
 <h1 class="header1">Naujos produkcijos kūrimas</h1>
 <form #ngform>
-<div>
-  <mat-form-field appearance="outline">
-    <input required name="pavadinimas" [(ngModel)]="produkcija.pavadinimas" matInput placeholder="Įveskite pavadinimą"
-           [formControl]="pavadinimas">
-    <mat-label>Pavadinimas</mat-label>
-    <mat-error *ngIf="(error | async)">{{'Pavadinimas privalomas'}}</mat-error>
-  </mat-form-field>
-</div>
-<div>
-  <mat-form-field>
-    <mat-label>Įvesties tipai</mat-label>
-    <mat-select multiple [(ngModel)]="produkcija.ivestys" disableOptionCentering required [formControl]="ivestis">
-      <mat-option *ngFor="let produkcija of reiksmiuTipai" [value]="produkcija">{{produkcija}}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="(error | async)">{{'Įvestis privaloma'}}</mat-error>
-  </mat-form-field>
-</div>
-<div>
-  <mat-form-field>
-    <mat-label>Išvesties tipas</mat-label>
-    <mat-select [(ngModel)]="produkcija.isvestis" disableOptionCentering required [formControl]="isvestis">
-      <mat-option (onSelectionChange)="printProd()" *ngFor="let produkcija of reiksmiuTipai"
-                  [value]="produkcija">{{produkcija}}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="(error | async)">{{'Išvestis privaloma'}}</mat-error>
-  </mat-form-field>
-</div>
+  <div>
+    <mat-form-field appearance="outline">
+      <input required name="pavadinimas" [(ngModel)]="produkcija.pavadinimas" matInput placeholder="Įveskite pavadinimą"
+             [formControl]="pavadinimas">
+      <mat-label>Pavadinimas</mat-label>
+      <mat-error *ngIf="(error | async)">{{'Pavadinimas privalomas'}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <input required name="kaina" [(ngModel)]="produkcija.kaina" matInput placeholder="Įveskite kainą"
+             [formControl]="kaina">
+      <mat-label>Kaina</mat-label>
+      <mat-error *ngIf="(error | async)">{{'Kaina privaloma'}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Įvesties tipai</mat-label>
+      <mat-select multiple [(ngModel)]="produkcija.ivestys" disableOptionCentering required [formControl]="ivestis">
+        <mat-option *ngFor="let produkcija of reiksmiuTipai" [value]="produkcija">{{produkcija}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="(error | async)">{{'Įvestis privaloma'}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Išvesties tipas</mat-label>
+      <mat-select [(ngModel)]="produkcija.isvestis" disableOptionCentering required [formControl]="isvestis">
+        <mat-option *ngFor="let produkcija of reiksmiuTipai" [value]="produkcija">{{produkcija}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="(error | async)">{{'Išvestis privaloma'}}</mat-error>
+    </mat-form-field>
+  </div>
 
-<div class="example-button-row button-margin">
-  <button (click)="issaugoti()" mat-raised-button class="button">Kurti naują</button>
-  <button routerLink="/produkcijos" mat-raised-button class="button-red">Atšaukti</button>
-</div>
+  <div class="example-button-row button-margin">
+    <button (click)="issaugoti()" mat-raised-button class="button">Kurti naują</button>
+    <button routerLink="/produkcijos" mat-raised-button class="button-red">Atšaukti</button>
+  </div>
 </form>
 

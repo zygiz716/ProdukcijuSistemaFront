@@ -18,6 +18,7 @@ export class KurtiProdukcijaComponent implements OnInit {
   ivestis = new FormControl('', [Validators.required]);
   isvestis = new FormControl('', [Validators.required]);
   pavadinimas = new FormControl();
+  kaina = new FormControl();
   reiksmiuTipai = Object.keys(ReiksmiuTipai);
   error = new BehaviorSubject(false);
 
@@ -27,24 +28,12 @@ export class KurtiProdukcijaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getErrorMessageIvestis() {
-
-  }
-
-  getErrorMessageIsvestis() {
-    return this.isvestis.hasError('required') ? 'Išvestis privaloma' : '';
-  }
-
   issaugoti() {
-    if(this.pavadinimas.valid && this.ivestis.valid && this.isvestis.valid) {
+    if(this.pavadinimas.valid && this.ivestis.valid && this.isvestis.valid && this.isvestis.valid) {
       this.produkcijaService.issaugotiProdukcija(this.produkcija);
     } else {
       this.error.next(true);
     }
-  }
-
-  printProd(){
-    console.log(this.produkcija.ivestys)
   }
 
 }
