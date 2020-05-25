@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GrandineVykdymasService } from './grandine-vykdymas.service';
+import { PlanoVykdymasService } from './plano-vykdymas.service';
 
 describe('GrandineVykdymasService', () => {
-  let service: GrandineVykdymasService;
+  let service: PlanoVykdymasService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GrandineVykdymasService);
+    service = TestBed.inject(PlanoVykdymasService);
   });
 
   it('should be created', () => {

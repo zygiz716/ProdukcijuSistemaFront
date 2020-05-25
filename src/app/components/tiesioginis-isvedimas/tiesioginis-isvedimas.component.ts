@@ -8,7 +8,7 @@ import {TiesioginisIsvedimasService} from "../../services/tiesioginis-isvedimas.
 import {Produkcija} from "../../model/produkcija";
 import {ProdukcijaService} from "../../services/produkcija.service";
 import {Spalvos} from "../../enums/spalvos.enum";
-import {GrandineVykdymasService} from "../../services/grandine-vykdymas.service";
+import {PlanoVykdymasService} from "../../services/plano-vykdymas.service";
 import {ProdukcijuGrandineService} from "../../services/produkciju-grandine.service";
 import {ProdukcijuGrandine} from "../../model/produkciju-grandine";
 import {IsvedimoDuomenys} from "../../model/isvedimo-duomenys";
@@ -39,7 +39,7 @@ export class TiesioginisIsvedimasComponent implements OnInit {
 
   constructor(private tiesioginisIsvedimasService: TiesioginisIsvedimasService,
               private produkcijaService: ProdukcijaService,
-              public grandinesVykdymasService: GrandineVykdymasService,
+              public grandinesVykdymasService: PlanoVykdymasService,
               private produkcijuGrandineService: ProdukcijuGrandineService) { }
 
   ngOnInit(): void {

@@ -4,7 +4,7 @@ import {Produkcija} from "../../model/produkcija";
 import {ProdukcijuGrandine} from "../../model/produkciju-grandine";
 import {ProdukcijuGrandineService} from "../../services/produkciju-grandine.service";
 import {Router} from "@angular/router";
-import {GrandineVykdymasService} from "../../services/grandine-vykdymas.service";
+import {PlanoVykdymasService} from "../../services/plano-vykdymas.service";
 
 @Component({
   selector: 'app-produkciju-grandines',
@@ -23,7 +23,7 @@ export class ProdukcijuGrandinesComponent implements OnInit {
   grandines: ProdukcijuGrandine [] = [];
 
   constructor(private grandineService: ProdukcijuGrandineService,
-              private grandineVykdymasService:GrandineVykdymasService,
+              private grandineVykdymasService:PlanoVykdymasService,
               private router: Router) {
   }
 

@@ -5,7 +5,7 @@ import {ProdukcijuGrandine} from "../../model/produkciju-grandine";
 import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 import {take} from "rxjs/operators";
 import {BehaviorSubject} from "rxjs";
-import {GrandineVykdymasService} from "../../services/grandine-vykdymas.service";
+import {PlanoVykdymasService} from "../../services/plano-vykdymas.service";
 import {GrandinesInfo} from "../../model/grandines-info";
 import {TipasA} from "../../model/tipas-a";
 import {FormControl, Validators} from "@angular/forms";
@@ -29,7 +29,7 @@ export class GrandinesVykdymasComponent implements OnInit {
   constructor(private _Activatedroute: ActivatedRoute,
               private grandineService: ProdukcijuGrandineService,
               private _ngZone: NgZone,
-              public grandinesVykdymasService: GrandineVykdymasService) {
+              public grandinesVykdymasService: PlanoVykdymasService) {
   }
 
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
@@ -62,7 +62,7 @@ export class GrandinesVykdymasComponent implements OnInit {
   }
 
   vykdyti(){
-    this.grandinesVykdymasService.vykdytiGamybosGrandine()
+    this.grandinesVykdymasService.vykdytiPlana()
   }
 
   vykdytiImage(){

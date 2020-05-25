@@ -19,7 +19,7 @@
 <!--    <mat-select [(ngModel)]="grandinesVykdymasService.spalva" disableOptionCentering>
       <mat-option *ngFor="let spalva of spalvos" [value]="spalva">{{spalva}}</mat-option>
     </mat-select>-->
-    <input [(colorPicker)]="grandinesVykdymasService.spalva" [style.background]="grandinesVykdymasService.spalva"/>
+    <input [(colorPicker)]="grandinesVykdymasService.spalva" [style.background]="grandinesVykdymasService.spalva" [cpPosition] = "'top-right'"/>
   </mat-form-field>
 </div>
 
